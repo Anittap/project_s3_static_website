@@ -27,3 +27,10 @@ resource "aws_subnet" "private" {
     Name = "${var.project}-${var.environment}-private-${count.index + 1}"
   }
 }
+resource "aws_internet_gateway" "igw" {
+  vpc_id = aws_vpc.main.id
+
+  tags = {
+    Name = "${var.project}-${var.environment}"
+  }
+}
