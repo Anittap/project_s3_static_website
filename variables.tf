@@ -14,4 +14,7 @@ variable "cidr_block" {
   type        = string
   description = "vpc cdr block"
 }
-
+variable "newbits" {
+  type        = number
+  description = "Bits to add to subnet"
+}
