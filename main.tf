@@ -34,3 +34,6 @@ resource "aws_internet_gateway" "igw" {
     Name = "${var.project}-${var.environment}"
   }
 }
+resource "aws_eip" "nat" {
+  domain = "vpc"
+}
