@@ -11,7 +11,7 @@ variable "project" {
   description = "project name"
 }
 variable "cidr_block" {
-  type       = string
+  type        = string
   description = "vpc cdr block"
 }
 
