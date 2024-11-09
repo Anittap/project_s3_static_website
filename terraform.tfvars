@@ -6,3 +6,4 @@ newbits       = 4
 backend_ports = ["80", "443"]
 ssh_port      = "22"
 lb_ports      = ["80", "443"]
+domain_name   = "anitta.cloud"

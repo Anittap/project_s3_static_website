@@ -30,6 +30,10 @@ variable "ssh_port" {
   type        = string
   description = "ssh port for backend"
 }
+variable "domain_name" {
+  type        = string
+  description = "domain name"
+}
 locals {
   content_type_mapping = file("./mime.json")
 }

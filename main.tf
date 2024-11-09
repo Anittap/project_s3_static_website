@@ -127,3 +127,10 @@ resource "aws_vpc_security_group_egress_rule" "asg" {
   cidr_ipv4         = "0.0.0.0/0"
   ip_protocol       = "-1"
 }
+resource "aws_s3_bucket" "images" {
+  bucket = "${var.environment}.${var.domain_name}"
+
+  tags = {
+    Name = "${var.project}-${var.environment}-bucket"
+  }
+}
