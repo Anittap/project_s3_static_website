@@ -18,3 +18,6 @@ variable "newbits" {
   type        = number
   description = "Bits to add to subnet"
 }
+locals {
+  content_type_mapping = file("./mime.json")
+}
