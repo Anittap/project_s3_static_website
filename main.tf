@@ -109,3 +109,8 @@ resource "aws_vpc_security_group_ingress_rule" "lb" {
   ip_protocol       = "tcp"
   to_port           = each.key
 }
+resource "aws_vpc_security_group_egress_rule" "lb" {
+  security_group_id = aws_security_group.lb.id
+  cidr_ipv4         = "0.0.0.0/0"
+  ip_protocol       = "-1"
+}
