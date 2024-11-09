@@ -101,3 +101,11 @@ resource "aws_security_group" "asg" {
 
   }
 }
+resource "aws_vpc_security_group_ingress_rule" "lb" {
+  for_each          = toset(var.lb_ports)
+  security_group_id = aws_security_group.lb.id
+  cidr_ipv4         = "0.0.0.0/0"
+  from_port         = each.key
+  ip_protocol       = "tcp"
+  to_port           = each.key
+}
