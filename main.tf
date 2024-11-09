@@ -114,3 +114,11 @@ resource "aws_vpc_security_group_egress_rule" "lb" {
   cidr_ipv4         = "0.0.0.0/0"
   ip_protocol       = "-1"
 }
+resource "aws_vpc_security_group_ingress_rule" "asg" {
+  for_each          = toset(var.backend_ports)
+  security_group_id = aws_security_group.asg.id
+  cidr_ipv4         = "0.0.0.0/0"
+  from_port         = each.key
+  ip_protocol       = "tcp"
+  to_port           = each.key
+}
