@@ -91,3 +91,13 @@ resource "aws_security_group" "lb" {
 
   }
 }
+resource "aws_security_group" "asg" {
+  name        = "asg"
+  description = "Security group for auto-scaling group instances"
+  vpc_id      = aws_vpc.main.id
+
+  tags = {
+    Name = "${var.project}-${var.environment}-asg"
+
+  }
+}
