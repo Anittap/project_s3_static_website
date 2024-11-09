@@ -81,4 +81,13 @@ resource "aws_route" "nat" {
   destination_cidr_block = "0.0.0.0/0"
   nat_gateway_id         = aws_nat_gateway.nat.id
 }
+resource "aws_security_group" "lb" {
+  name        = "lb"
+  description = "Security group for load balancer instances"
+  vpc_id      = aws_vpc.main.id
 
+  tags = {
+    Name = "${var.project}-${var.environment}-lb"
+
+  }
+}
