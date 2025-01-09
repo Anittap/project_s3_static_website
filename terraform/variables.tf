@@ -17,3 +17,7 @@ variable "domain_name" {
 locals {
   content_type_mapping = file("./mime.json")
 }
+variable "website_dir" {
+  type        = string
+  description = "website directory name"
+}
