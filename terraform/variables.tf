@@ -10,26 +10,6 @@ variable "project" {
   type        = string
   description = "project name"
 }
-variable "cidr_block" {
-  type        = string
-  description = "vpc cdr block"
-}
-variable "newbits" {
-  type        = number
-  description = "Bits to add to subnet"
-}
-variable "backend_ports" {
-  type        = list(string)
-  description = "backend server ports"
-}
-variable "lb_ports" {
-  type        = list(string)
-  description = "load balancer ports"
-}
-variable "ssh_port" {
-  type        = string
-  description = "ssh port for backend"
-}
 variable "domain_name" {
   type        = string
   description = "domain name"
