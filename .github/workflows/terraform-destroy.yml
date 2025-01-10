@@ -8,6 +8,7 @@ on:
         options:
           - "yes"
           - "no"
+
 jobs:
   delete:
     runs-on: ubuntu-latest
@@ -17,21 +18,20 @@ jobs:
       AWS_DEFAULT_REGION: ${{ secrets.AWS_REGION }}
 
     steps:
-      name: "Repository Checkout"
-      uses: actions/checkout@v3
+      - name: "Repository Checkout"
+        uses: actions/checkout@v3
 
-      name: "Setting up terraform"
-      uses: hashicorp/setup-terraform@v3
-      with:
+      - name: "Setting Up Terraform"
+        uses: hashicorp/setup-terraform@v3
+        with:
           terraform_version: 1.9.8
 
-      name: "terraform initialisation"
-      run: terraform init
-      working_directory: ../terraform/
+      - name: "Terraform Initialization"
+        run: terraform init
+        working-directory: ./terraform/
 
-      if: ${{github.event.inputs.confirm_destroy == 'yes'}}
-      name: "terraform destroy"
-      run: terraform destroy -auto-approve
-      working_directory: ../terraform/
+      - name: "Terraform Destroy"
+        if: ${{ github.event.inputs.confirm_destroy == 'yes' }}
+        run: terraform destroy -auto-approve
+        working-directory: ./terraform/
 
-      
