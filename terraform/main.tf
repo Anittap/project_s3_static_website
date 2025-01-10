@@ -28,3 +28,13 @@ resource "aws_s3_bucket_policy" "public_bucket_policy" {
   bucket = aws_s3_bucket.website.id
   policy = data.template_file.s3_public_policy.rendered
 }
+resource "aws_s3_object" "website_file" {
+    
+  for_each     = fileset("../${var.website_dir}", "**/*")
+  bucket       = aws_s3_bucket.website.bucket
+  key          = each.key
+  source       = "../${var.website_dir}/${each.key}"
+  content_type = lookup(local.content_type_mapping, regex("\\.[^.]+$", each.key), null)
+  etag         = filemd5("../${var.website_dir}/${each.value}")
+
+}

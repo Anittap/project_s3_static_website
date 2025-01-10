@@ -15,7 +15,7 @@ variable "domain_name" {
   description = "domain name"
 }
 locals {
-  content_type_mapping = file("./mime.json")
+  content_type_mapping = jsondecode(file("./mime.json"))
 }
 variable "website_dir" {
   type        = string
