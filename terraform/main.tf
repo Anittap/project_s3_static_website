@@ -38,3 +38,15 @@ resource "aws_s3_object" "website_file" {
   etag         = filemd5("../${var.website_dir}/${each.value}")
 
 }
+resource "aws_route53_record" "website_bucket_record" {
+    
+  zone_id = data.aws_route53_zone.my_domain.zone_id
+  name    = "${var.environment}.${var.domain_name}"
+  type    = "A"
+
+  alias {
+    name                   = aws_s3_bucket_website_configuration.website.website_domain
+    zone_id                = aws_s3_bucket.website.hosted_zone_id
+    evaluate_target_health = true
+  }
+}
